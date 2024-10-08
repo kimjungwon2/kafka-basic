@@ -1,4 +1,4 @@
-package com.example;
+package com.example.producer;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -8,7 +8,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import java.util.Properties;
 
 @Slf4j
-public class MessageKeyProducer {
+public class PartitionNumProducer {
     private final static String TOPIC_NAME = "test";
     private final static String BOOTSTRAP_SERVERS = "my-kafka:9092";
 
@@ -20,10 +20,9 @@ public class MessageKeyProducer {
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(configs);
 
-        ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME,"Jungwon","31");
+        int partitionNo = 0;
+        ProducerRecord<String, String> record = new ProducerRecord<>(TOPIC_NAME, partitionNo, "Pankyo", "Pankyo");
         producer.send(record);
-        ProducerRecord<String, String> record2 = new ProducerRecord<>(TOPIC_NAME,"HeeEun","21");
-        producer.send(record2);
         producer.flush();
         producer.close();
     }
