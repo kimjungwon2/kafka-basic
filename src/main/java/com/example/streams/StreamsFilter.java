@@ -2,6 +2,7 @@ package com.example.streams;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.kstream.KStream;
@@ -27,5 +28,9 @@ public class StreamsFilter {
         KStream<String, String> streamLog = builder.stream(STREAM_LOG);
 
         streamLog.filter((key,value)->value.length() >5).to(STREAM_LOG_FILTER);
+
+        KafkaStreams streams;
+        streams = new KafkaStreams(builder.build(), props);
+        streams.start();
     }
 }
