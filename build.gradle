@@ -12,6 +12,7 @@ repositories {
 dependencies {
     compileOnly 'org.apache.kafka:kafka-clients:2.5.0'
     implementation 'org.apache.kafka:kafka-streams:2.5.0'
+    implementation 'org.apache.hadoop:hadoop-client:3.3.0'
     compileOnly 'org.slf4j:slf4j-simple:1.7.30'
 
     compileOnly 'org.projectlombok:lombok:1.18.30'
@@ -19,7 +20,8 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.30'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
-    
+
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
