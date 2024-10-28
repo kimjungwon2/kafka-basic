@@ -2,8 +2,6 @@ package com.example.springkafka.batch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -22,20 +20,20 @@ public class SpringConsumerApplication {
     @KafkaListener(topics = "test",
             groupId = "test-group-01")
     public void batchListener(ConsumerRecords<String, String> records) {
-        records.forEach(record -> logger.info(record.toString()));
+        records.forEach(record -> log.info(record.toString()));
     }
 
     @KafkaListener(topics = "test",
             groupId = "test-group-02")
     public void batchListener(List<String> list) {
-        list.forEach(recordValue -> logger.info(recordValue));
+        list.forEach(recordValue -> log.info(recordValue));
     }
 
     @KafkaListener(topics = "test",
             groupId = "test-group-03",
             concurrency = "3")
     public void concurrentBatchListener(ConsumerRecords<String, String> records) {
-        records.forEach(record -> logger.info(record.toString()));
+        records.forEach(record -> log.info(record.toString()));
     }
 
 }
